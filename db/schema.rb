@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2021_06_25_160821) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "oauth_access_grants", force: :cascade do |t|
-    t.integer "resource_owner_id", null: false
-    t.integer "application_id", null: false
+    t.bigint "resource_owner_id", null: false
+    t.bigint "application_id", null: false
     t.string "token", null: false
     t.integer "expires_in", null: false
     t.text "redirect_uri", null: false
@@ -27,8 +30,8 @@ ActiveRecord::Schema.define(version: 2021_06_25_160821) do
   end
 
   create_table "oauth_access_tokens", force: :cascade do |t|
-    t.integer "resource_owner_id"
-    t.integer "application_id", null: false
+    t.bigint "resource_owner_id"
+    t.bigint "application_id", null: false
     t.string "token", null: false
     t.string "refresh_token"
     t.integer "expires_in"
